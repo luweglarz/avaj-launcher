@@ -6,8 +6,8 @@ PWD = $(shell pwd)
 
 all: 
 	javac $(SRCS)
-	@echo "avaj_launcer"
-	
+	@echo "avaj_launcher"
+	java avaj_launcher.Simulation.Simulation scenario.txt
 clean:
 	rm -rf $(OBJS)
 	
