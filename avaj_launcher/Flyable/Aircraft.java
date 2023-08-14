@@ -1,6 +1,5 @@
 package avaj_launcher.Flyable;
 
-import avaj_launcher.Coordinates;
 import avaj_launcher.Tower.WeatherTower;
 
 //The dependency arrow between Aircraft and Flyable means that Flyable has to be implemented and not extended into Aircraft
