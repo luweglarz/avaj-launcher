@@ -1,6 +1,5 @@
 package avaj_launcher.Tower;
 
-import avaj_launcher.WeatherProvider;
 import avaj_launcher.Flyable.Coordinates;;
 
 public class WeatherTower extends Tower {

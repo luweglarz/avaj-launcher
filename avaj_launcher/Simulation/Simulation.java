@@ -4,15 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import avaj_launcher.Flyable.Aircraft;
 import avaj_launcher.Flyable.AircraftFactory;
-import avaj_launcher.Flyable.Coordinates;
 import avaj_launcher.Flyable.Flyable;
 
 public class Simulation {
@@ -22,10 +18,11 @@ public class Simulation {
 	private static Boolean checkLine(ArrayList<String> line){
 		if (line.size() != 5)
 			return (false);
+		if (line.get(0).equals("Baloon") && line.get(0).equals("Helicopter") && line.get(0).equals("JetPlane"))
+			return (false);
 		try{
-			for (int i = 2; i < line.size(); i++){
+			for (int i = 2; i < line.size(); i++)
 				Integer.parseInt(line.get(i));
-			}
 		}
 		catch (NumberFormatException e){
 			return (false);
@@ -33,10 +30,10 @@ public class Simulation {
 		return (true);
 	}
 
-	private static Flyable generateAircraft(ArrayList<String> line) throws WrongScenarioFormat{
+	private static Flyable generateAircraft(ArrayList<String> line, Integer id) throws WrongScenarioFormat{
 		if (checkLine(line)){
 			Integer newCoordinates[] = { Integer.parseInt(line.get(2)) , Integer.parseInt(line.get(3)), Integer.parseInt(line.get(3)) };
-			return AircraftFactory.newAircraft(line.get(0), line.get(1), newCoordinates);
+			return AircraftFactory.newAircraft(line.get(0), id, line.get(1), newCoordinates);
 		}
 		else
 			throw new WrongScenarioFormat("Wrong line format");
@@ -52,13 +49,13 @@ public class Simulation {
 		try {
 			File simulatorFile = new File(args[0]);
 			Scanner fileScanner = new Scanner(simulatorFile);
-			Integer ids = 0;
+			int ids = 0;
 			simRepetitions = Integer.parseInt(fileScanner.nextLine());
 			fileScanner.hasNextLine();
 			while (fileScanner.hasNextLine()) {
 			  String data = fileScanner.nextLine();
 			  List<String> splitted = Arrays.asList(data.split(" "));
-			  aircrafts.put(ids++ ,generateAircraft(new ArrayList<String>(splitted)));
+			  aircrafts.put(ids++ ,generateAircraft(new ArrayList<String>(splitted), ids));
 			  System.out.println(data);
 			}
 			fileScanner.close();
@@ -66,6 +63,8 @@ public class Simulation {
 			System.out.println("An error occurred during file parsing:");
 			if (e instanceof NumberFormatException )
 				System.out.println("	First line should contain the number of simulation repetition");
+			else if (e instanceof WrongScenarioFormat)
+				System.out.println(e.getMessage());
 			//e.printStackTrace();
 		}
 	}

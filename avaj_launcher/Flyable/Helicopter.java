@@ -8,4 +8,5 @@ public class Helicopter extends Aircraft{
 	public void updateConditions(){
 
 	}
+
 }
