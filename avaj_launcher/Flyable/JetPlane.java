@@ -8,4 +8,16 @@ public class JetPlane extends Aircraft{
 	public void updateConditions(){
 
 	}
+
+	public String getName(){
+		return (this.name);
+	}
+
+	public long getId(){
+		return (this.id);
+	}
+
+	public String getType(){
+		return ("JetPlane");
+	}
 }

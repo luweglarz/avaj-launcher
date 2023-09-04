@@ -8,25 +8,25 @@ public abstract class Tower {
 
 	protected void conditionChanged(){
 		for (int i = 0; i < observers.size(); i++){
-			observers.get(i).updateConditions();
+			this.observers.get(i).updateConditions();
 		}
 	}
 
 	public void register(Flyable p_flyable){
 		if (!this.observers.contains(p_flyable)){
-			observers.add(p_flyable);
-			System.out.println("Registered flyable");
+			this.observers.add(p_flyable);
+			System.out.println("Tower says: " + p_flyable.getType() + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") registered to weather tower");
 		}
 		else
-			System.out.println("Flyable with this ID already registered");
+			System.out.println("This flyable with this ID already registered");
 	}
 
 	public void unregister(Flyable p_flyable){
-		if (!this.observers.contains(p_flyable)){
-			observers.add(p_flyable);
-			System.out.println("Registered flyable");
+		if (this.observers.contains(p_flyable)){
+			this.observers.remove(p_flyable);
+			System.out.println("Tower says: " + p_flyable.getType() + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") unregistered from weather tower");
 		}
 		else
-			System.out.println("Flyable does not exist");
+			System.out.println("This flyable does not exist");
 	}
 }

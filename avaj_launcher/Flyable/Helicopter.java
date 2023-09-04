@@ -9,4 +9,15 @@ public class Helicopter extends Aircraft{
 
 	}
 
+	public String getName(){
+		return (this.name);
+	}
+
+	public long getId(){
+		return (this.id);
+	}
+
+	public String getType(){
+		return ("Helicopter");
+	}
 }

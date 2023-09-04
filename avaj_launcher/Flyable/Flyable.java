@@ -8,4 +8,10 @@ public interface Flyable {
 	
 	public void registerTower(WeatherTower p_tower);
 
+	public String getName();
+
+	public long getId();
+
+	public String getType();
+
 };
