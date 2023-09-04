@@ -32,7 +32,7 @@ public class Simulation {
 
 	private static Flyable generateAircraft(ArrayList<String> line, Integer id) throws WrongScenarioFormat{
 		if (checkLine(line)){
-			Integer newCoordinates[] = { Integer.parseInt(line.get(2)) , Integer.parseInt(line.get(3)), Integer.parseInt(line.get(3)) };
+			Integer newCoordinates[] = { Integer.parseInt(line.get(2)) , Integer.parseInt(line.get(3)), Integer.parseInt(line.get(4)) };
 			return AircraftFactory.newAircraft(line.get(0), id, line.get(1), newCoordinates);
 		}
 		else
@@ -53,7 +53,7 @@ public class Simulation {
 			  List<String> splitted = Arrays.asList(data.split(" "));
 			  Flyable newAircraft = generateAircraft(new ArrayList<String>(splitted), ids++);
 			  newAircraft.registerTower(weatherTower);
-			  weatherTower.register(newAircraft);
+			  //weatherTower.register(newAircraft);
 			}
 			fileScanner.close();
 		} catch (NumberFormatException | FileNotFoundException | IllegalStateException | WrongScenarioFormat e) {

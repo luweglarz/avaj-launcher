@@ -7,7 +7,7 @@ public class Baloon extends Aircraft{
 
 	public void updateConditions(){
 		String currentWeather = weatherTower.getWeather(this.coordinates);
-
+			
 		if (currentWeather.equals("SUN")){
 			if ((this.coordinates.getHeight() + 4) >= 100)
 				this.coordinates = new Coordinates(this.coordinates.getLongitude() + 2, this.coordinates.getLatitude(), 100);
@@ -16,25 +16,34 @@ public class Baloon extends Aircraft{
 			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Let's enjoy the good weather and take some pics.");
 		}
 		else if (currentWeather.equals("RAIN")){
-			if ((this.coordinates.getHeight() - 5) <= 0)
+			if ((this.coordinates.getHeight() - 5) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-			else
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+			}
+			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 5);
-			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you rain! You messed up my baloon.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you rain! You messed up my baloon.");
+			}
 		}
 		else if (currentWeather.equals("FOG")){
-			if ((this.coordinates.getHeight() - 3) <= 0)
+			if ((this.coordinates.getHeight() - 3) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-			else
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+			}
+			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 3);
-			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you fog!");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you fog!");
+			}
 		}
 		else if (currentWeather.equals("SNOW")){
-			if ((this.coordinates.getHeight() - 15) <= 0)
+			if ((this.coordinates.getHeight() - 15) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-			else
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+			}
+			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 15);
-			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": It's snowing. We're gonna crash.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": It's snowing. We're gonna crash.");
+			}
 		}
 	}
 	

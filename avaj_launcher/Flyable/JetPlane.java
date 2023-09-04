@@ -24,11 +24,14 @@ public class JetPlane extends Aircraft{
 			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you fog!");
 		}
 		else if (currentWeather.equals("SNOW")){
-			if ((this.coordinates.getHeight() - 7) <= 0)
+			if ((this.coordinates.getHeight() - 7) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-			else
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+			}
+			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 7);
-			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ":  OMG! Winter is coming!");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ":  OMG! Winter is coming!");
+			}
 		}
 	}
 

@@ -24,11 +24,14 @@ public class Helicopter extends Aircraft{
 			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Damn you fog!");
 		}
 		else if (currentWeather.equals("SNOW")){
-			if ((this.coordinates.getHeight() - 12) <= 0)
+			if ((this.coordinates.getHeight() - 12) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-			else
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+			}
+			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 12);
-			System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": My rotor is going to freeze!");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": My rotor is going to freeze!");
+			}
 		}
 	}
 
