@@ -51,7 +51,9 @@ public class Simulation {
 			while (fileScanner.hasNextLine()) {
 			  String data = fileScanner.nextLine();
 			  List<String> splitted = Arrays.asList(data.split(" "));
-			  weatherTower.register(generateAircraft(new ArrayList<String>(splitted), ids++));
+			  Flyable newAircraft = generateAircraft(new ArrayList<String>(splitted), ids++);
+			  newAircraft.registerTower(weatherTower);
+			  weatherTower.register(newAircraft);
 			}
 			fileScanner.close();
 		} catch (NumberFormatException | FileNotFoundException | IllegalStateException | WrongScenarioFormat e) {
@@ -60,6 +62,15 @@ public class Simulation {
 				System.out.println("	First line should contain the number of simulation repetition");
 			else if (e instanceof WrongScenarioFormat)
 				System.out.println(e.getMessage());
+		}
+	}
+
+	private static void runSimulation(WeatherTower weatherTower){
+		int i = 0;
+
+		while (i < simRepetitions){
+			weatherTower.changeWeather();
+			i++;
 		}
 	}
 	public static void main(String[] args){
@@ -71,5 +82,6 @@ public class Simulation {
 		}
 		else
 			parseScenario(args[0], weatherTower);
+		runSimulation(weatherTower);
 	}
 }

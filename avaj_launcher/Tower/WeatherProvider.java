@@ -13,7 +13,7 @@ public class WeatherProvider {
     }
 
 	// Instanciate WeatherProvider static class and return this instance
-	public static WeatherProvider geWeatherProvider() {
+	public static WeatherProvider getWeatherProvider() {
         if (instance == null) {
             instance = new WeatherProvider();
         }
@@ -21,7 +21,7 @@ public class WeatherProvider {
     }
 
 	// Algorithm to generate the weather based on p_coordinates
-	public String getcCurrentWeather(Coordinates p_coordinates){
+	public String getCurrentWeather(Coordinates p_coordinates){
 		int sum = p_coordinates.getHeight() + p_coordinates.getLatitude() + p_coordinates.getLongitude();
 
 		return (this.weather[sum % 4]);

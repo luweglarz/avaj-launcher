@@ -17,11 +17,7 @@ public abstract class Aircraft implements Flyable{
 		this. coordinates = p_coordinates;
 	}
 
-	public void updateConditions(){
-
-	}
-
 	public void registerTower(WeatherTower p_tower){
-
+		this.weatherTower = p_tower;
 	}
 }
