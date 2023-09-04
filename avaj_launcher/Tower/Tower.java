@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import avaj_launcher.Flyable.Flyable;
 
 public abstract class Tower {
-	private ArrayList<Flyable> observers;
+	private ArrayList<Flyable> observers = new ArrayList<Flyable>();
 
 	protected void conditionChanged(){
 		for (int i = 0; i < observers.size(); i++){

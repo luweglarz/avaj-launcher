@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 import avaj_launcher.Flyable.AircraftFactory;
 import avaj_launcher.Flyable.Flyable;
+import avaj_launcher.Tower.WeatherTower;
 
 public class Simulation {
 
@@ -39,24 +39,19 @@ public class Simulation {
 			throw new WrongScenarioFormat("Wrong line format");
 
 	}
-	public static void main(String[] args){
-		TreeMap<Integer, Flyable> aircrafts = new TreeMap<Integer, Flyable>();
 
-		if (args.length != 1){
-			System.out.println("This program takes one argument 'scenario.txt'.");
-			return ;
-		}
+	private static void parseScenario(String fileName, WeatherTower weatherTower){
 		try {
-			File simulatorFile = new File(args[0]);
+			File simulatorFile = new File(fileName);
 			Scanner fileScanner = new Scanner(simulatorFile);
-			int ids = 0;
+			int ids = 1;
+
 			simRepetitions = Integer.parseInt(fileScanner.nextLine());
 			fileScanner.hasNextLine();
 			while (fileScanner.hasNextLine()) {
 			  String data = fileScanner.nextLine();
 			  List<String> splitted = Arrays.asList(data.split(" "));
-			  aircrafts.put(ids++ ,generateAircraft(new ArrayList<String>(splitted), ids));
-			  System.out.println(data);
+			  weatherTower.register(generateAircraft(new ArrayList<String>(splitted), ids++));
 			}
 			fileScanner.close();
 		} catch (NumberFormatException | FileNotFoundException | IllegalStateException | WrongScenarioFormat e) {
@@ -65,7 +60,16 @@ public class Simulation {
 				System.out.println("	First line should contain the number of simulation repetition");
 			else if (e instanceof WrongScenarioFormat)
 				System.out.println(e.getMessage());
-			//e.printStackTrace();
 		}
+	}
+	public static void main(String[] args){
+		WeatherTower weatherTower = new WeatherTower();
+
+		if (args.length != 1){
+			System.out.println("This program takes one argument 'scenario.txt'.");
+			return ;
+		}
+		else
+			parseScenario(args[0], weatherTower);
 	}
 }
