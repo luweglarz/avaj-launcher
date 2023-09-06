@@ -1,8 +1,8 @@
 package avaj_launcher.Flyable;
 
 public class Helicopter extends Aircraft{
-	public Helicopter(long p_id, String p_name, Coordinates p_coordinate){
-		super(p_id, p_name, p_coordinate);
+	public Helicopter(long p_id, String p_name, String p_type, Coordinates p_coordinate){
+		super(p_id, p_name, p_type, p_coordinate);
 	}
 
 	public void updateConditions(){
@@ -35,15 +35,15 @@ public class Helicopter extends Aircraft{
 		}
 	}
 
-	public String getName(){
-		return (this.name);
-	}
+	// public String getName(){
+	// 	return (this.name);
+	// }
 
-	public long getId(){
-		return (this.id);
-	}
+	// public long getId(){
+	// 	return (this.id);
+	// }
 
-	public String getType(){
-		return ("Helicopter");
-	}
+	// public String getType(){
+	// 	return ("Helicopter");
+	// }
 }

@@ -1,8 +1,8 @@
 package avaj_launcher.Flyable;
 
 public class Baloon extends Aircraft{
-	public Baloon(long p_id, String p_name, Coordinates p_coordinate){
-		super(p_id, p_name, p_coordinate);
+	public Baloon(long p_id, String p_name, String p_type, Coordinates p_coordinate){
+		super(p_id, p_name, p_type, p_coordinate);
 	}
 
 	public void updateConditions(){
@@ -47,15 +47,15 @@ public class Baloon extends Aircraft{
 		}
 	}
 	
-	public String getName(){
-		return (this.name);
-	}
+	// public String getName(){
+	// 	return (this.name);
+	// }
 
-	public long getId(){
-		return (this.id);
-	}
+	// public long getId(){
+	// 	return (this.id);
+	// }
 
-	public String getType(){
-		return ("Baloon");
-	}
+	// public String getType(){
+	// 	return ("Baloon");
+	// }
 }

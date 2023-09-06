@@ -1,8 +1,8 @@
 package avaj_launcher.Flyable;
 
 public class JetPlane extends Aircraft{
-	public JetPlane(long p_id, String p_name, Coordinates p_coordinate){
-		super(p_id, p_name, p_coordinate);
+	public JetPlane(long p_id, String p_name, String p_type, Coordinates p_coordinate){
+		super(p_id, p_name, p_type, p_coordinate);
 	}
 
 	public void updateConditions(){
@@ -33,17 +33,5 @@ public class JetPlane extends Aircraft{
 				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ":  OMG! Winter is coming!");
 			}
 		}
-	}
-
-	public String getName(){
-		return (this.name);
-	}
-
-	public long getId(){
-		return (this.id);
-	}
-
-	public String getType(){
-		return ("JetPlane");
 	}
 }
