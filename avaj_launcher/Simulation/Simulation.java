@@ -18,11 +18,13 @@ public class Simulation {
 	private static Boolean checkLine(ArrayList<String> line){
 		if (line.size() != 5)
 			return (false);
-		if (line.get(0).equals("Baloon") && line.get(0).equals("Helicopter") && line.get(0).equals("JetPlane"))
+		if (!line.get(0).equals("Baloon") && !line.get(0).equals("Helicopter") && !line.get(0).equals("JetPlane"))
 			return (false);
 		try{
-			for (int i = 2; i < line.size(); i++)
-				Integer.parseInt(line.get(i));
+			for (int i = 2; i < line.size(); i++){
+				if (Integer.parseInt(line.get(i)) < 0)
+					return (false);
+			}
 		}
 		catch (NumberFormatException e){
 			return (false);
@@ -47,19 +49,22 @@ public class Simulation {
 			int ids = 1;
 
 			simRepetitions = Integer.parseInt(fileScanner.nextLine());
+			if (simRepetitions < 0)
+				throw new WrongScenarioFormat("Simulation repetitions should be a positive integer.");
 			fileScanner.hasNextLine();
 			while (fileScanner.hasNextLine()) {
 			  String data = fileScanner.nextLine();
+			  if (data.isEmpty())
+				continue;
 			  List<String> splitted = Arrays.asList(data.split(" "));
 			  Flyable newAircraft = generateAircraft(new ArrayList<String>(splitted), ids++);
 			  newAircraft.registerTower(weatherTower);
-			  //weatherTower.register(newAircraft);
 			}
 			fileScanner.close();
 		} catch (NumberFormatException | FileNotFoundException | IllegalStateException | WrongScenarioFormat e) {
 			System.out.println("An error occurred during file parsing:");
 			if (e instanceof NumberFormatException )
-				System.out.println("	First line should contain the number of simulation repetition");
+				System.out.println("First line should contain the number of simulation repetition");
 			else if (e instanceof WrongScenarioFormat)
 				System.out.println(e.getMessage());
 		}

@@ -18,7 +18,8 @@ public class Baloon extends Aircraft{
 		else if (currentWeather.equals("RAIN")){
 			if ((this.coordinates.getHeight() - 5) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing at: " + this.coordinates.getLongitude() + "," + this.coordinates.getLatitude());
+				this.unregisterTower();
 			}
 			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 5);
@@ -28,7 +29,8 @@ public class Baloon extends Aircraft{
 		else if (currentWeather.equals("FOG")){
 			if ((this.coordinates.getHeight() - 3) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing at: " + this.coordinates.getLongitude() + "," + this.coordinates.getLatitude());
+				this.unregisterTower();
 			}
 			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 3);
@@ -38,7 +40,8 @@ public class Baloon extends Aircraft{
 		else if (currentWeather.equals("SNOW")){
 			if ((this.coordinates.getHeight() - 15) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing at: " + this.coordinates.getLongitude() + "," + this.coordinates.getLatitude());
+				this.unregisterTower();
 			}
 			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 15);

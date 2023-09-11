@@ -26,7 +26,8 @@ public class Helicopter extends Aircraft{
 		else if (currentWeather.equals("SNOW")){
 			if ((this.coordinates.getHeight() - 12) <= 0){
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), 0);
-				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing.");
+				System.out.println(this.getType() + "#" + this.getName() + "(" + this.getId() + ")" + ": Landing at: " + this.coordinates.getLongitude() + "," + this.coordinates.getLatitude());
+				this.unregisterTower();
 			}
 			else{
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 12);
@@ -34,16 +35,4 @@ public class Helicopter extends Aircraft{
 			}
 		}
 	}
-
-	// public String getName(){
-	// 	return (this.name);
-	// }
-
-	// public long getId(){
-	// 	return (this.id);
-	// }
-
-	// public String getType(){
-	// 	return ("Helicopter");
-	// }
 }
