@@ -2,15 +2,11 @@ package avaj_launcher.Flyable;
 
 import avaj_launcher.Tower.WeatherTower;
 
-//The dependency arrow between Aircraft and Flyable means that Flyable has to be implemented and not extended into Aircraft
-//Aircraft isn't mean to be instancied so it is declared as an abstract class
 public class Aircraft extends Flyable{
 	protected long id;
 	protected String name;
 	protected String type;
 	protected Coordinates coordinates;
-
-	public WeatherTower weatherTower;
 
 	protected Aircraft(long p_id, String p_name, String p_type, Coordinates p_coordinates){
 		this.id = p_id;
