@@ -1,5 +1,8 @@
 package avaj_launcher.Flyable;
 
+/*
+	Coordinates has a composition relationship with Aircraft, Coordinates can't exists on its own and has to be related to an Aircraft
+*/
 public class Coordinates {
 	private int longitude;
 	private int latitude;

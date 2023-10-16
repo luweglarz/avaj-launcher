@@ -2,8 +2,11 @@ package avaj_launcher.Flyable;
 
 import avaj_launcher.Tower.WeatherTower;
 
+/*
+	Abstract class Flyable is the supplier of the realization relationship between Aircraft and Flyable
+*/
 public abstract class Flyable {
-	public WeatherTower weatherTower;
+	protected WeatherTower weatherTower;
 
 	public abstract void updateConditions();
 	

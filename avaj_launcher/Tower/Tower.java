@@ -3,6 +3,9 @@ package avaj_launcher.Tower;
 import java.util.ArrayList;
 import avaj_launcher.Flyable.Flyable;
 
+/*
+	Tower has an aggregate relationship with Flyable, it is composed of flyables but flyables behave on their own
+*/
 public abstract class Tower {
 	private ArrayList<Flyable> observers = new ArrayList<Flyable>();
 

@@ -2,6 +2,9 @@ package avaj_launcher.Flyable;
 
 import avaj_launcher.Tower.WeatherTower;
 
+/*
+	Class Aircraft is the supplier of the realization relationship between Aircraft and Flyable
+*/
 public class Aircraft extends Flyable{
 	protected long id;
 	protected String name;
