@@ -24,6 +24,8 @@ public class Simulation {
 			for (int i = 2; i < line.size(); i++){
 				if (Integer.parseInt(line.get(i)) < 0)
 					return (false);
+				if ((i == 4) && (Integer.parseInt(line.get(i)) > 100 || Integer.parseInt(line.get(i)) < 0))
+					return (false);
 			}
 		}
 		catch (NumberFormatException e){
@@ -38,25 +40,27 @@ public class Simulation {
 			return AircraftFactory.newAircraft(line.get(0), id, line.get(1), newCoordinates);
 		}
 		else
-			throw new WrongScenarioFormat("Wrong line format");
+			throw new WrongScenarioFormat("Wrong line format, aircraft number " + id);
 
 	}
 
-	private static void parseScenario(String fileName, WeatherTower weatherTower){
+	private static Integer parseScenario(String fileName, WeatherTower weatherTower){
 		try {
 			File simulatorFile = new File(fileName);
 			Scanner fileScanner = new Scanner(simulatorFile);
 			int ids = 1;
 
 			simRepetitions = Integer.parseInt(fileScanner.nextLine());
-			if (simRepetitions < 0)
+			if (simRepetitions < 0){
+				fileScanner.close();
 				throw new WrongScenarioFormat("Simulation repetitions should be a positive integer.");
+			}
 			fileScanner.hasNextLine();
 			while (fileScanner.hasNextLine()) {
 			  String data = fileScanner.nextLine();
 			  if (data.isEmpty())
 				continue;
-			  List<String> splitted = Arrays.asList(data.split(" "));
+			  List<String> splitted = Arrays.asList(data.split("\\s+"));
 			  Flyable newAircraft = generateAircraft(new ArrayList<String>(splitted), ids++);
 			  newAircraft.registerTower(weatherTower);
 			}
@@ -67,7 +71,9 @@ public class Simulation {
 				System.out.println("First line should contain the number of simulation repetition");
 			else if (e instanceof WrongScenarioFormat)
 				System.out.println(e.getMessage());
+			return (1);
 		}
+		return (0);
 	}
 
 	private static void runSimulation(WeatherTower weatherTower){
@@ -85,8 +91,8 @@ public class Simulation {
 			System.out.println("This program takes one argument 'scenario.txt'.");
 			return ;
 		}
-		else
-			parseScenario(args[0], weatherTower);
+		if (parseScenario(args[0], weatherTower) != 0)
+			return ;
 		runSimulation(weatherTower);
 	}
 }

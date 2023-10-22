@@ -1,5 +1,4 @@
 package avaj_launcher.Tower;
-
 import avaj_launcher.Flyable.Coordinates;
 
 public class WeatherProvider {
@@ -23,7 +22,7 @@ public class WeatherProvider {
 	// Algorithm to generate the weather based on p_coordinates
 	public String getCurrentWeather(Coordinates p_coordinates){
 		int sum = p_coordinates.getHeight() + p_coordinates.getLatitude() + p_coordinates.getLongitude();
-
+		sum +=  System.currentTimeMillis();
 		return (this.weather[sum % 4]);
 	}
 
