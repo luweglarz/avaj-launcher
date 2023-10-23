@@ -1,5 +1,4 @@
 package avaj_launcher.Tower;
-
 import java.util.ArrayList;
 import avaj_launcher.Flyable.Flyable;
 
