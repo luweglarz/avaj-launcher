@@ -17,7 +17,9 @@ public abstract class Tower {
 	public void register(Flyable p_flyable){
 		if (!this.observers.contains(p_flyable)){
 			this.observers.add(p_flyable);
-			System.out.println("Tower says: " + p_flyable.getType() + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") registered to weather tower");
+			Class<?> type = p_flyable.getClass();
+			String [] classes = type.getName().split("\\.");
+			System.out.println("Tower says: " + classes[classes.length - 1] + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") registered to weather tower");
 		}
 		else
 			System.out.println("This flyable with this ID already registered");
@@ -26,7 +28,9 @@ public abstract class Tower {
 	public void unregister(Flyable p_flyable){
 		if (this.observers.contains(p_flyable)){
 			this.observers.remove(p_flyable);
-			System.out.println("Tower says: " + p_flyable.getType() + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") unregistered from weather tower");
+			Class<?> type = p_flyable.getClass();
+			String [] classes = type.getName().split("\\.");
+			System.out.println("Tower says: " + classes[classes.length - 1] + "#" + p_flyable.getName() + "(" + p_flyable.getId() + ") unregistered from weather tower");
 		}
 		else
 			System.out.println("This flyable does not exist");

@@ -16,6 +16,4 @@ public abstract class Flyable {
 
 	public abstract long getId();
 
-	public abstract String getType();
-
 };

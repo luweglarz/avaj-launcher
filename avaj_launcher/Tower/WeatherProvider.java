@@ -2,28 +2,18 @@ package avaj_launcher.Tower;
 import avaj_launcher.Flyable.Coordinates;
 
 public class WeatherProvider {
-	private String[] weather;
-
-	// WeatherProvider is a static class so it should only have one instance within the program
-	private static WeatherProvider instance;
+	static private String[] weather = new String[]{ "RAIN", "FOG", "SUN", "SNOW" };
 
 	private WeatherProvider() {
-        this.weather = new String[]{ "RAIN", "FOG", "SUN", "SNOW" };
-    }
-
-	// Instanciate WeatherProvider static class and return this instance
-	public static WeatherProvider getWeatherProvider() {
-        if (instance == null) {
-            instance = new WeatherProvider();
-        }
-        return instance;
     }
 
 	// Algorithm to generate the weather based on p_coordinates
-	public String getCurrentWeather(Coordinates p_coordinates){
+	public static String getCurrentWeather(Coordinates p_coordinates){
 		int sum = p_coordinates.getHeight() + p_coordinates.getLatitude() + p_coordinates.getLongitude();
-		sum += System.currentTimeMillis();
-		return (this.weather[sum % 3]);
+		sum += (int)System.currentTimeMillis();
+		if (sum < 0)
+			sum = sum * -1;
+		return (weather[sum % 3]);
 	}
 
 }
